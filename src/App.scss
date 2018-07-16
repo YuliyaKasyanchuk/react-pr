@@ -1,0 +1,186 @@
+// variables
+
+$font: 'Ubuntu', sans-serif;
+$main-color: #444;
+$light-grey: #EFEFEF;
+$pink: #fc0fc0;
+$white: #fff;
+$hoverColor: #c40c96;
+$dark-grey: #808080;
+$blue: #005187;
+
+// Mixins
+
+@mixin transition($property: all, $duration: .3s, $ease: linear){
+  -webkit-transition: $property $duration $ease;
+  -moz-transition: $property $duration $ease;
+  -o-transition: $property $duration $ease;
+  transition: $property $duration $ease;
+}
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html{
+  width: 100%;
+  height: 100%;
+}
+body{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-image: url(../src/img/bg.jpg);
+}
+#root{
+  width: 100%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+section{
+  margin-bottom: 20px;
+  display: flex;
+  justufy-content: center;
+  align-items: center;
+}
+h1{
+  font: 700 26px/28px $font;
+  color: $blue;
+  text-align: center;
+  span{
+    display: block;
+    font: 700 15px/15px $font;
+  }
+}
+img{
+  width: 50px;
+  height: 50px;
+  background-color: lighten($dark-grey,30%);
+  border-radius: 50%;
+  margin-right: 10px;
+}
+main{
+  width: 100%;
+  max-width: 350px;
+}
+form{
+  border: 2px solid $light-grey;
+  padding: 15px;
+  width: 100%;
+  border-radius: 4px;
+  background-color: $white;
+  @include transition;
+  &:hover{
+    box-shadow: 0 0 10px rgba(128,128,128, .5);
+  }
+  a{
+    font: 400 11px/12px $font;
+    color: lighten($dark-grey,10%);
+    @include transition;
+    &:hover{
+      text-decoration: none;
+    }
+  }
+  div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+  }
+  span{
+    font: 400 11px/12px $font;
+    color: red;
+  }
+}
+label{
+  display: block;
+  font: 400 12px/14px $font;
+  color: $main-color;
+}
+input{
+  display: block;
+  border: 1px solid $light-grey;
+  border-radius: 3px;
+  padding: 10px;
+  margin-top: 5px;
+  width: 100%;
+  margin-bottom: 10px;
+  outline: none;
+  width: -webkit-fill-available;
+  @include transition;
+  &:focus{
+    border: 1px solid $dark-grey;
+    
+    outline: none;
+  }
+  &:-webkit-autofill{
+    -webkit-box-shadow: 0 0 0 30px #ffffff inset;
+  }
+}
+button{
+  background-color: $pink;
+  color: $white;
+  text-transform: uppercase;
+  font: 400 12px/14px $font;
+  padding: 10px 25px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  @include transition;
+  &:hover{
+    background-color: $hoverColor;
+   
+  }
+}
+button[type='button']{
+  padding: 4px 7px;
+  border-radius: 50%;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
+div[data-content='overlay']{
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.3);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include transition;
+
+}
+div[data-content='modal']{
+  text-align: center;
+  background-color: $white;
+  position: relative;
+  padding: 100px 20px;
+  width: 50%;
+  max-width: 350px;
+  height: fit-content;
+}
+
+
+@media screen and (max-width: 680px){
+  main{
+    width: 90%;
+  }
+  div[data-content='modal']{
+    width: 90%;
+}
+  
+}
